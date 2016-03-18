@@ -1,0 +1,46 @@
+package:
+  name: numpy-allocation-tracking
+  # version: <-- Provided by __conda_version__.txt -- See build.sh
+
+source:
+  git_url: ../
+  git_tag: HEAD
+
+extra:
+  additional-sources:
+    numpy:
+      git_url: https://github.com/numpy/numpy
+      git_rev: maintenance/{{NPY_VER}}.x
+      
+      patches:
+        # Changes an import statement for consistency with this package.
+        - patches/track_allocations.py.patch
+
+build:
+  number: 0
+  #string: <-- Provided by __conda_buildstr__.txt -- See build.sh >>
+
+  script_env:
+    - CONDA_PY
+    - CONDA_NPY
+
+requirements:
+  build:
+    - numpy {{NPY_VER}}*
+    - cython
+  run:
+    - numpy {{NPY_VER}}*
+
+test:
+  imports:
+    - numpy_allocation_tracking.alloc_hook
+    - numpy_allocation_tracking.track_allocations
+    - numpy_allocation_tracking.decorators
+
+about:
+  home: http://www.numpy.org
+  license: BSD
+  summary: >
+    Allocation tracking utility from the numpy
+    source repo (which isn't installed by default),
+    plus an extra module with some decorators.
