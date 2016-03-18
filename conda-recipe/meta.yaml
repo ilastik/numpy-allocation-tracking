@@ -40,6 +40,7 @@ test:
 about:
   home: http://www.numpy.org
   license: BSD
+  license_file: numpy/LICENSE.txt # Copy the numpy license.
   summary: >
     Allocation tracking utility from the numpy
     source repo (which isn't installed by default),
