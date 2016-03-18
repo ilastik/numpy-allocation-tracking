@@ -1,6 +1,6 @@
 package:
   name: numpy-allocation-tracking
-  # version: <-- Provided by __conda_version__.txt -- See build.sh
+  version: 0.1
 
 source:
   git_url: ../
@@ -10,19 +10,19 @@ extra:
   additional-sources:
     numpy:
       git_url: https://github.com/numpy/numpy
-      git_rev: maintenance/{{NPY_VER}}.x
+      
+      # We choose a particular version of the numpy source just for the allocation_tracking extension module,
+      # but this recipe can still be built against other versions of numpy.
+      # That is, use any value you want for CONDA_NPY when building this recipe.
+      git_rev: v1.9.3
       
       patches:
-        # Changes an import statement for consistency with this package.
+        # This patch changes an import statement for consistency with this package.
         - patches/track_allocations.py.patch
 
 build:
   number: 0
-  #string: <-- Provided by __conda_buildstr__.txt -- See build.sh >>
-
-  script_env:
-    - CONDA_PY
-    - CONDA_NPY
+  string: py{{CONDA_PY}}np{{CONDA_NPY}}_{{PKG_BUILDNUM}}_g{{GIT_FULL_HASH[:7]}}
 
 requirements:
   build:
