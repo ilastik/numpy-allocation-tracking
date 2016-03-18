@@ -10,7 +10,7 @@ The numpy git repo includes a useful [`allocation_tracking`][allocation_tracking
 Installation
 ------------
 
-    conda install -c ilastik numpy_allocation_tracking
+    conda install -c ilastik numpy-allocation-tracking
 
 Build it yourself
 -----------------
