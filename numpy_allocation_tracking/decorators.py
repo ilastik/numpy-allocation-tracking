@@ -47,16 +47,19 @@ def track_max_alloc(func):
 
 def assert_mem_usage_factor(max_allowed_usage_factor=1.0, comparison_input_arg=0, memory_log_dir=None):
     """
-    Decorator.
+    Returns a decorator.
     
-    Calls the given function and checks the memory usage of all numpy array allocations it makes.
+    The decorator checks the memory usage of all numpy array allocations made by the decorated function.
 
-    The memory usage is compared to the size of one of the arguments, the first argument by default,
-    but this can be overridden by setting comparison_input_arg to an int or string (to select a keyword argument).
+    By default, the memory usage is compared to the size of the decorated function's first argument.
+    Override via comparison_input_arg:
+    - If comparison_input_arg is an int  N, compare with the Nth argument instead of the 0th.
+    - If comparison_input_arg is a str, it is assumed to be a keyword arg to the function.
+    - If comparison_input_arg is an ndarray, it is directly used for the comparison.
 
-    If the memory usage exceeds some multiple of the input data size (as specified by max_allowed_usage_factor),
-    then an assertion is raised and an html log file of numpy allocations is written out.
-    Set memory_log_dir to customize the location of the written log file.  By default, it's written to the CWD.
+    If the memory usage exceeds some multiple of the compared data's size (as specified by max_allowed_usage_factor),
+    then an assertion is raised, and an html log file of numpy allocations is written out.
+    Set memory_log_dir to customize the location of the written log file.  (By default, it's written to the CWD.)
     """
 
     def decorator(func):
@@ -67,6 +70,8 @@ def assert_mem_usage_factor(max_allowed_usage_factor=1.0, comparison_input_arg=0
                 input_data = args[comparison_input_arg]
             elif isinstance(comparison_input_arg, str):
                 input_data = kwargs[comparison_input_arg]
+            elif isinstance(comparison_input_arg, np.ndarray):
+                input_data = comparison_input_arg
             assert isinstance(input_data, np.ndarray)
     
             func_name = func.__name__
