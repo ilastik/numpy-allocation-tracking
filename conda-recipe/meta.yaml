@@ -22,14 +22,16 @@ extra:
         - patches/track_allocations.py.patch
 
 build:
-  number: 2
+  number: 3
   string: py{{CONDA_PY}}np{{CONDA_NPY}}_{{PKG_BUILDNUM}}_g{{GIT_FULL_HASH[:7]}}
 
 requirements:
   build:
+    - python {{PY_VER}}*
     - numpy {{NPY_VER}}*
     - cython
   run:
+    - python {{PY_VER}}*
     - numpy {{NPY_VER}}*
 
 test:
