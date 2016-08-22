@@ -1,10 +1,15 @@
 package:
-  name: numpy-allocation-tracking
-  version: 0.1
+    name: numpy-allocation-tracking
+  
+  {% if GIT_DESCRIBE_NUMBER|int == 0 %}
+    version: {{GIT_DESCRIBE_TAG}}
+  {% else %}
+    # If we're using a non-tagged revision, append '.postN' to the version
+    version: {{GIT_DESCRIBE_TAG}}.post{{GIT_DESCRIBE_NUMBER}}
+  {% endif %}
 
 source:
-  git_url: ../
-  git_tag: HEAD
+  path: ../
 
 extra:
   additional-sources:
@@ -15,14 +20,13 @@ extra:
       # but this recipe can still be built against other versions of numpy.
       # That is, use any value you want for CONDA_NPY when building this recipe.
       git_rev: v1.9.3
-      git_depth: 1
       
       patches:
         # This patch changes an import statement for consistency with this package.
         - patches/track_allocations.py.patch
 
 build:
-  number: 3
+  number: 0
   string: py{{CONDA_PY}}np{{CONDA_NPY}}_{{PKG_BUILDNUM}}_g{{GIT_FULL_HASH[:7]}}
 
 requirements:
