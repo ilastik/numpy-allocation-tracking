@@ -37,6 +37,7 @@ requirements:
   run:
     - python {{PY_VER}}*
     - numpy {{NPY_VER}}*
+    - jinja2
 
 test:
   imports:
