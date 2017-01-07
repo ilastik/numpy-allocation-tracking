@@ -80,7 +80,7 @@ class PrettyAllocationTracker(AllocationTracker):
             stack_trace = stack_trace[start_frame:stop_frame]
 
             # Add formatting
-            stack_trace = map(lambda s: s.split('\n'), stack_trace)
+            stack_trace = [s.split('\n') for s in stack_trace]
             for item in stack_trace:
                 item[0] += '<br>\n'
                 item[1] = '&nbsp;&nbsp;&nbsp;&nbsp;' + item[1] + '<br>\n'
@@ -88,7 +88,7 @@ class PrettyAllocationTracker(AllocationTracker):
             # Drop last newline
             stack_trace[-1][1] = stack_trace[-1][1][:-len('<br>\n')]
             
-            stack_trace = map(lambda items: ''.join(items), stack_trace)
+            stack_trace = [''.join(items) for items in stack_trace]
             
             stack_trace_text = ''.join( stack_trace )
             stack_trace_text = '<code>' + stack_trace_text + '</code>'
@@ -136,7 +136,7 @@ def _toScientific(ram, base=1024, expstep=1, explimit=4):
     return mant, exp
 
 if __name__ == '__main__':
-    print os.getcwd()
+    print(os.getcwd())
     
     import numpy as np
     tracker = PrettyAllocationTracker(1000, traceback_length=5)

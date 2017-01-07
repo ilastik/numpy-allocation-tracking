@@ -1,1 +1,1 @@
-from pretty_allocation_tracker import PrettyAllocationTracker
+from .pretty_allocation_tracker import PrettyAllocationTracker
