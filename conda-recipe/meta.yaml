@@ -20,7 +20,7 @@ source:
     # We choose a particular version of the numpy source just for the allocation_tracking extension module,
     # but this recipe can still be built against other versions of numpy.
     # That is, use any value you want for CONDA_NPY when building this recipe.
-    git_rev: v1.9.3
+    git_rev: v1.13.1
     
     patches:
       # This patch changes an import statement for consistency with this package.
