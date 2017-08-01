@@ -1,4 +1,2 @@
-cd ${SRC_DIR}/numpy_allocation_tracking/tests
-for f in $(ls *.py); do
-    python $f
-done
+python -m numpy_allocation_tracking.tests.test_decorators
+python -m numpy_allocation_tracking.tests.test_pretty_allocation_tracker

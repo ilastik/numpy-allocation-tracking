@@ -1,9 +1,5 @@
-# Download the numpy source repo
-CONDA_PYTHON=$(conda info --root)/bin/python
-"${CONDA_PYTHON}" "${RECIPE_DIR}/download-extra-sources.py"
-
 if [[ $(uname) == "Darwin" ]]; then
-    export MACOSX_DEPLOYMENT_TARGET=10.7
+    export MACOSX_DEPLOYMENT_TARGET=10.9
 fi
 
 # Build the alloc_hook extension module

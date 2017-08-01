@@ -9,21 +9,22 @@ package:
   {% endif %}
 
 source:
-  path: ../
-
-extra:
-  additional-sources:
-    numpy:
-      git_url: https://github.com/numpy/numpy
+  # TWO sources:
+  # 1. This repo
+  - path: ../
+  
+  # 2. numpy itself (so we can build its allocation_tracking tool)
+  - folder: numpy
+    git_url: https://github.com/numpy/numpy
       
-      # We choose a particular version of the numpy source just for the allocation_tracking extension module,
-      # but this recipe can still be built against other versions of numpy.
-      # That is, use any value you want for CONDA_NPY when building this recipe.
-      git_rev: v1.9.3
-      
-      patches:
-        # This patch changes an import statement for consistency with this package.
-        - patches/track_allocations.py.patch
+    # We choose a particular version of the numpy source just for the allocation_tracking extension module,
+    # but this recipe can still be built against other versions of numpy.
+    # That is, use any value you want for CONDA_NPY when building this recipe.
+    git_rev: v1.9.3
+    
+    patches:
+      # This patch changes an import statement for consistency with this package.
+      - patches/track_allocations.py.patch
 
 build:
   number: 0
