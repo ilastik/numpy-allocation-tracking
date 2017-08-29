@@ -3,7 +3,13 @@ import numpy as np
 from numpy_allocation_tracking.decorators import assert_mem_usage_factor
 
 def dumb_function(x, y, z, input_array):
-    return x * (input_array + y + z)
+    ## As of numpy-1.13, the following line of code has no extra memory
+    # overhead for intermediate values, thanks to a new inlining feature in numpy. 
+    # return x * (input_array + y + z)
+    
+    # Therefore, we must explicitly break it up to force extra memory usage.
+    intermediate = input_array + y + z
+    return x * intermediate    
 
 class Test(unittest.TestCase):
 
