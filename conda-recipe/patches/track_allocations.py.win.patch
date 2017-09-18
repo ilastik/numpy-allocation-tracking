@@ -1,0 +1,13 @@
+diff --git a/tools/allocation_tracking/track_allocations.py b/tools/allocation_tracking/track_allocations.py
+index d25993800..2447c3918 100644
+--- a/tools/allocation_tracking/track_allocations.py
++++ b/tools/allocation_tracking/track_allocations.py
+@@ -3,7 +3,7 @@ from __future__ import division, absolute_import, print_function
+ import numpy as np
+ import gc
+ import inspect
+-from alloc_hook import NumpyAllocHook
++from numpy_allocation_tracking.alloc_hook import NumpyAllocHook
+ 
+ class AllocationTracker(object):
+     def __init__(self, threshold=0):
