@@ -24,10 +24,7 @@ source:
     
     patches:
       # This patch changes an import statement for consistency with this package.
-      # under windows, the original patch fails to apply due to misterious reasons. 
-      # Thus was created afresh on win (changes only 1 line anyways)
-      - patches/track_allocations.py.patch # [not win]
-      - patches/track_allocations.py.win.patch # [win] 
+      patches/track_allocations.py.win.patch
 
 build:
   number: 0
