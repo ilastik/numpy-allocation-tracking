@@ -27,17 +27,17 @@ source:
       patches/track_allocations.py.win.patch
 
 build:
-  number: 0
+  number: 1
   string: py{{CONDA_PY}}np{{CONDA_NPY}}_{{PKG_BUILDNUM}}_g{{GIT_FULL_HASH[:7]}}
 
 requirements:
   build:
-    - python {{PY_VER}}*
-    - numpy {{NPY_VER}}*
+    - python {{ python }}
+    - numpy {{ numpy }}
     - cython
   run:
-    - python {{PY_VER}}*
-    - numpy {{NPY_VER}}*
+    - python
+    - numpy
     - jinja2
 
 test:
