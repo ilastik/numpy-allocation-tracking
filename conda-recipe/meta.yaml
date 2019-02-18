@@ -27,14 +27,16 @@ source:
       patches/track_allocations.py.win.patch
 
 build:
-  number: 2
+  number: 0
   string: np{{CONDA_NPY}}py{{CONDA_PY}}_{{PKG_BUILDNUM}}_h{{PKG_HASH}}_g{{GIT_FULL_HASH[:7]}}
 
 requirements:
   build:
+    - {{ compiler("cxx") }}
+  host:
+    - cython
     - python {{ python }}
     - numpy {{ numpy }}
-    - cython
   run:
     - python
     - numpy
