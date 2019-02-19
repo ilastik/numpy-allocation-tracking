@@ -38,8 +38,8 @@ requirements:
     - python {{ python }}
     - numpy {{ numpy }}
   run:
-    - python
-    - numpy
+    - python {{ python }}
+    - numpy {{ numpy }}
     - jinja2
 
 test:
