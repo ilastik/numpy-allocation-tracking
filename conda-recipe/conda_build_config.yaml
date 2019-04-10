@@ -1,9 +1,4 @@
 numpy:
   - 1.12
 python:
-  - 3.6
-
-
-pin_run_as_build:
-  numpy: x.x
-  python: x.x
+  - 3.7
